@@ -1,25 +1,58 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    .form-control {
+        border: none !important;
+    }
+    .form-control label{
+        display: block !important;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        min-width: 140px !important;
+    }
 
+    li {
+        float: left;
+    }
+    li a{
+        display: block;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+    }
+{% endblock %}
 {% block body %}
-    <h1>Cliente edit</h1>
+    <section class="" id="">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-12 portfolio-item">
+                <h1 style="margin-top: 25px;">Editar Cliente</h1>
+                {{ form_start(edit_form) }}
+                    <div class="form-group row">
+                        <div class="col-4">
+                        {{ form_widget(edit_form,{'attr':{'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Editar" class="btn btn-lg"/>
+                    </div>
+                {{ form_end(edit_form) }}
 
-    {{ form_start(edit_form) }}
-        <div class="form-group">
-            {{ form_widget(edit_form,{'attr':{'class':'form-control'}}) }}
+                <ul>
+                    <li>
+                        <a href="{{ path('clientes_index') }}" class="btn btn-lg" style="background-color: #117a8b; color: white">Regresar</a>
+                    </li>
+                    <li>
+                        {{ form_start(delete_form) }}
+                            <input type="submit" value="Eliminar" class="btn btn-danger btn-lg">
+                        {{ form_end(delete_form) }}
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Edit" class="btn btn-lg"/>
-        </div>
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('clientes_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="btn btn-danger btn-lg">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+      </div>
+    </section>
 {% endblock %}

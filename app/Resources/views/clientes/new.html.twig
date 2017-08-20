@@ -1,18 +1,34 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    .form-control {
+        border: none !important;
+    }
+    .form-control label{
+        display: block !important;
+    }
+{% endblock %}
 {% block body %}
-    <h1>Cliente creation</h1>
-    
-    {{ form_start(form) }}
-        <div class="form-group">
-            {{ form_widget(form,{'attr':{'class':'form-control'}}) }}
-            <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+    <section class="" id="">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-12 portfolio-item">
+                <h1 style="margin-top: 25px;"> Cliente creation</h1>
+
+                {{ form_start(form) }}
+                    <div class="form-group row">
+                        {{ form_widget(form,{'attr':{'class':'form-control'}}) }}
+                        
+                    </div>
+                        <input type="submit" value="Agregar" class="btn btn-primary btn-lg" />
+                {{ form_end(form) }}
+
+                <ul>
+                    <li>
+                        <a href="{{ path('clientes_index') }}" class="btn btn-lg" >Regresar</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    {{ form_end(form) }}
-    
-    <ul>
-        <li>
-            <a href="{{ path('clientes_index') }}" class="btn btn-lg" >Back to the list</a>
-        </li>
-    </ul>
+      </div>
+    </section>
 {% endblock %}
