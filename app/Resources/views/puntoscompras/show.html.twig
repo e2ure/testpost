@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Puntoscompra</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Puntosobtenidos</th>
+                <td>{{ puntosCompra.puntosObtenidos }}</td>
+            </tr>
+            <tr>
+                <th>Redimidos</th>
+                <td>{{ puntosCompra.redimidos }}</td>
+            </tr>
+            <tr>
+                <th>Fechacompra</th>
+                <td>{% if puntosCompra.fechaCompra %}{{ puntosCompra.fechaCompra|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fecharedimidos</th>
+                <td>{% if puntosCompra.fechaRedimidos %}{{ puntosCompra.fechaRedimidos|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idpuntoscompra</th>
+                <td>{{ puntosCompra.idpuntoscompra }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('puntoscompras_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('puntoscompras_edit', { 'idpuntoscompra': puntosCompra.idpuntoscompra }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

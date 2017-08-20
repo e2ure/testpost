@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Producto</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Sku</th>
+                <td>{{ producto.sku }}</td>
+            </tr>
+            <tr>
+                <th>Valor</th>
+                <td>{{ producto.valor }}</td>
+            </tr>
+            <tr>
+                <th>Inventario</th>
+                <td>{{ producto.inventario }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ producto.estado }}</td>
+            </tr>
+            <tr>
+                <th>Idproducto</th>
+                <td>{{ producto.idproducto }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('productos_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('productos_edit', { 'idproducto': producto.idproducto }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

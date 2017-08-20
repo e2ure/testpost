@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cliente creation</h1>
+    
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_widget(form,{'attr':{'class':'form-control'}}) }}
+            <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+        </div>
+    {{ form_end(form) }}
+    
+    <ul>
+        <li>
+            <a href="{{ path('clientes_index') }}" class="btn btn-lg" >Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

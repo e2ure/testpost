@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Productos" table="productos">
+    <unique-constraints>
+      <unique-constraint name="sku_UNIQUE" columns="sku"/>
+    </unique-constraints>
+    <id name="idproducto" type="integer" column="idproducto">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="sku" type="string" column="sku" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="valor" type="float" column="valor" precision="10" scale="0" nullable="false"/>
+    <field name="inventario" type="integer" column="inventario" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="estado" type="integer" column="estado" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">1</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mantenimiento de Clientes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="{{asset('css/freelancer.min.css')}}" rel="stylesheet">
+    {% block stylesheets %}
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            min-width: 140px !important;
+        }
+
+        li {
+            float: left;
+        }
+        li a{
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+    {% endblock %}
+{% endblock %}
+{% block body %}
+    <section class="success" id="portfolio">
+      <div class="container">
+        <h2 style="margin-top: 25px;">Lista de Clientes</h2>
+        <div class="row">
+            <div class="col-lm-12 portfolio-item">     
+                <div class="table-responsive">
+                    <table class="records_list table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Dni</th>
+                                <th>Nombre</th>
+                                <th>Primer Apellido</th>
+                                <th>Segundo Apellido</th>
+                                <th>Telefono</th>
+                                <th>Fecha Nacimiento</th>
+                                <th>Fecha Ingreso</th>
+                                <th>Puntos Cashback</th>
+                                <th>Estado</th>
+                                <th>Idcliente</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for cliente in clientes %}
+                            <tr>
+                                <td><a href="{{ path('clientes_show', { 'idcliente': cliente.idcliente }) }}">{{ cliente.dni }}</a></td>
+                                <td>{{ cliente.nombre }}</td>
+                                <td>{{ cliente.apellido1 }}</td>
+                                <td>{{ cliente.apellido2 }}</td>
+                                <td>{{ cliente.telefono }}</td>
+                                <td>{% if cliente.fechaNacimiento %}{{ cliente.fechaNacimiento|date('d-m-Y') }}{% endif %}</td>
+                                <td>{% if cliente.fechaIngreso %}{{ cliente.fechaIngreso|date('d-m-Y H:i:s') }}{% endif %}</td>
+                                <td>{{ cliente.saldoCashback }}</td>
+                                <td>{{ cliente.estado }}</td>
+                                <td>{{ cliente.idcliente }}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('clientes_show', { 'idcliente': cliente.idcliente }) }}">Ver</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('clientes_edit', { 'idcliente': cliente.idcliente }) }}">Editar</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a href="{{ path('clientes_new') }}" class="btn btn-primary btn-lg" >Agregar un Cliente</a>
+            </li>
+        </ul>
+      </div>
+    </section>
+{% endblock %}

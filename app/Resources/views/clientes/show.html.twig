@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cliente</h1>
+
+    <div class="table-responsive">
+        <table class="record_properties table">
+            <tbody>
+                <tr>
+                    <th>Dni</th>
+                    <td>{{ cliente.dni }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td>{{ cliente.nombre }}</td>
+                </tr>
+                <tr>
+                    <th>Apellido1</th>
+                    <td>{{ cliente.apellido1 }}</td>
+                </tr>
+                <tr>
+                    <th>Apellido2</th>
+                    <td>{{ cliente.apellido2 }}</td>
+                </tr>
+                <tr>
+                    <th>Telefono</th>
+                    <td>{{ cliente.telefono }}</td>
+                </tr>
+                <tr>
+                    <th>Fechanacimiento</th>
+                    <td>{% if cliente.fechaNacimiento %}{{ cliente.fechaNacimiento|date('Y-m-d') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Fechaingreso</th>
+                    <td>{% if cliente.fechaIngreso %}{{ cliente.fechaIngreso|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Saldocashback</th>
+                    <td>{{ cliente.saldoCashback }}</td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td>{{ cliente.estado }}</td>
+                </tr>
+                <tr>
+                    <th>Idcliente</th>
+                    <td>{{ cliente.idcliente }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('clientes_index') }}" class="btn btn-lg btn-secondary">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('clientes_edit', { 'idcliente': cliente.idcliente }) }}" class="btn btn-primary btn-lg">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger btn-lg">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

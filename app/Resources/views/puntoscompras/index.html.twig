@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Puntoscompras list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Puntosobtenidos</th>
+                <th>Redimidos</th>
+                <th>Fechacompra</th>
+                <th>Fecharedimidos</th>
+                <th>Idpuntoscompra</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for puntosCompra in puntosCompras %}
+            <tr>
+                <td><a href="{{ path('puntoscompras_show', { 'idpuntoscompra': puntosCompra.idpuntoscompra }) }}">{{ puntosCompra.puntosObtenidos }}</a></td>
+                <td>{{ puntosCompra.redimidos }}</td>
+                <td>{% if puntosCompra.fechaCompra %}{{ puntosCompra.fechaCompra|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if puntosCompra.fechaRedimidos %}{{ puntosCompra.fechaRedimidos|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ puntosCompra.idpuntoscompra }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('puntoscompras_show', { 'idpuntoscompra': puntosCompra.idpuntoscompra }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('puntoscompras_edit', { 'idpuntoscompra': puntosCompra.idpuntoscompra }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('puntoscompras_new') }}">Create a new puntosCompra</a>
+        </li>
+    </ul>
+{% endblock %}
